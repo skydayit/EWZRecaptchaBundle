@@ -66,6 +66,8 @@ class RecaptchaType extends AbstractType
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
+        $this->language = $options['attr']['options']['locale'] ;
+        
         $view->vars = array_replace($view->vars, array(
             'ewz_recaptcha_enabled' => $this->enabled,
             'ewz_recaptcha_ajax'    => $this->ajax,
@@ -100,6 +102,7 @@ class RecaptchaType extends AbstractType
             'url_noscript'  => null,
             'attr'          => array(
                 'options' => array(
+                    'locale' => $this->language,
                     'theme' => 'light',
                     'type'  => 'image',
                     'expiredCallback' => null,
